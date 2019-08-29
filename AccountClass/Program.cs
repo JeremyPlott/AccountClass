@@ -22,6 +22,26 @@ namespace AccountClass {
 
         static void Main(string[] args) {
 
+            var cust1 = new Customer("CocaCola", "Cincinnati", "OH", true);
+            Console.WriteLine($"{cust1.Name}, {cust1.City}, {cust1.State}, ${cust1.Sales}, {cust1.Active}, Id - {cust1.Id}");
+
+            cust1.CheckSales();
+            cust1.AddSales(200);
+            cust1.ChangeName("Coke");
+
+            var cust2 = new Customer("Ikea", "Tampa", "FL", true);
+            Console.WriteLine($"{cust2.Name}, {cust2.City}, {cust2.State}, ${cust2.Sales}, {cust2.Active}, Id - {cust2.Id}");
+
+            cust2.ChangeLoc("Atlantis", "NM");
+            cust2.ChangeActive(false);
+            cust1.ChangeActive(true);
+
+            var cust3 = new Customer();
+            Console.WriteLine($"{cust3.Name}, {cust3.City}, {cust3.State}, ${cust3.Sales}, {cust3.Active}, Id - {cust3.Id}"); //Id and defaults still work
+
+
+
+            /*
             var acct1 = new Account("Primary Checking");
             //acct1.Balance = 1000000m; //should not be allowed to do this without calling a method. Safety nets.
 
@@ -49,6 +69,7 @@ namespace AccountClass {
             acct2.Deposit(5);
             Console.WriteLine($"{acct2.Description} account - {acct2.Id} has a balance of {acct2.GetBalance()}.");
             Console.WriteLine($"{acct1.Description} account - {acct1.Id} has a balance of {acct1.GetBalance()}.");
+            */
 
         }
 

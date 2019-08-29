@@ -12,13 +12,6 @@ namespace AccountClass {
         private decimal Balance { get; set; } = 0.0M; //sets default value. The M is to put as dec instead of double.
         public string Description { get; set; }
 
-        public void Transfer(Account acct, decimal amount) {            
-            var withdrawSuccessful = this.Withdraw(amount); //this is a variable that referrs to an instance of the class get gets provided
-            if(withdrawSuccessful) { //if(!____) flips the boolean.
-                acct.Deposit(amount);
-            }
-            Console.WriteLine("Transfer failed.");
-        }
 
         public Account() {
             Id = ++nextAccountNbr;
@@ -38,6 +31,14 @@ namespace AccountClass {
                 return false;
             }
             return true;
+        }
+
+        public void Transfer(Account acct, decimal amount) {            
+            var withdrawSuccessful = this.Withdraw(amount); //this is a variable that referrs to an instance of the class get gets provided
+            if(withdrawSuccessful) { //if(!____) flips the boolean.
+                acct.Deposit(amount);
+            }
+            Console.WriteLine("Transfer failed.");
         }
 
         public bool Deposit(decimal Amount) { //these variables are only referenced within the specific method, even with the same name.
