@@ -14,6 +14,7 @@
  * provide a way to set all but sales + Id
  * method for adding to sales
  * auto-gen Id
+ * 
 */
 
 namespace AccountClass {
@@ -22,15 +23,21 @@ namespace AccountClass {
 
         static void Main(string[] args) {
 
-            var cust1 = new Customer("CocaCola", "Cincinnati", "OH", true);
+
+            var cust1 = new Customer("CocaCola", "Cincinnati", "OH");
+            var acct1 = new Account("Primary Checking", cust1);
             Console.WriteLine($"{cust1.Name}, {cust1.City}, {cust1.State}, ${cust1.Sales}, {cust1.Active}, Id - {cust1.Id}");
 
             cust1.CheckSales();
             cust1.AddSales(200);
             cust1.ChangeName("Coke");
 
-            var cust2 = new Customer("Ikea", "Tampa", "FL", true);
+            var cust2 = new Customer("Ikea", "Tampa", "FL");
+            var acct2 = new Account("Money Laundering", cust2);
+            var acct3 = new Account("Swear Jar", cust1);
             Console.WriteLine($"{cust2.Name}, {cust2.City}, {cust2.State}, ${cust2.Sales}, {cust2.Active}, Id - {cust2.Id}");
+            Console.WriteLine($"{acct1.CustomerInstance.Name}------");
+            Console.WriteLine($"{acct3.CustomerInstance.Name}------");
 
             cust2.ChangeLoc("Atlantis", "NM");
             cust2.ChangeActive(false);
@@ -39,6 +46,23 @@ namespace AccountClass {
             var cust3 = new Customer();
             Console.WriteLine($"{cust3.Name}, {cust3.City}, {cust3.State}, ${cust3.Sales}, {cust3.Active}, Id - {cust3.Id}"); //Id and defaults still work
 
+
+
+            cust1.Name = "Playdoh";
+
+            var acct4 = new Account("Primary Savings", cust1);
+
+            acct1.Deposit(2);
+            acct3.Deposit(1000);
+            acct4.Deposit(50000);
+
+            var accounts = new Account[] { acct1, acct3, acct4 };
+            var accountTotal = 0m;
+            foreach(var account in accounts) {
+                accountTotal += account.GetBalance();
+                Console.WriteLine($"{account.Id} {account.Description} {account.CustomerInstance.Name} {account.GetBalance()}");
+            }
+            Console.WriteLine($"Total of all accounts is {accountTotal}.");
 
 
             /*

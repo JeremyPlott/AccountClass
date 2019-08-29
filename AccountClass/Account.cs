@@ -11,14 +11,24 @@ namespace AccountClass {
         public int Id { get; private set; }
         private decimal Balance { get; set; } = 0.0M; //sets default value. The M is to put as dec instead of double.
         public string Description { get; set; }
+        public Customer CustomerInstance { get; set; } = null; //property for PK-FK relationship with other class
 
 
-        public Account() {
+        private Account() { //still doing work in other constructors, but cannot be used to create a new instance when set private
             Id = ++nextAccountNbr;
         }  //constructors are conventionally at the end of the class. Same name as class.
 
         public Account(string Description) : this () { // : this () calls the other constructor first with () parameter.
             this.Description = Description; //distinguishes between parameter and property of the same name
+        }
+
+        public Account(Customer customer) : this () {     //constructor for PK-FK relationship with other class
+            this.CustomerInstance = customer;
+        }
+
+        public Account(string Description, Customer customer) {
+            this.Description = Description;
+            this.CustomerInstance = customer;
         }
 
         public decimal GetBalance() {

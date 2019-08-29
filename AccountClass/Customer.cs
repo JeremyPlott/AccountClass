@@ -13,7 +13,7 @@ namespace AccountClass {
         public string Name { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public decimal Sales { get; set; } = 0.0m;
+        public decimal Sales { get; private set; } = 0.0m;
         public bool Active { get; set; } = true;
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~METHODS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -53,15 +53,24 @@ namespace AccountClass {
 
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONSTRUCTORS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        public Customer() {
+
+        private void Initialize() {       //this is a much better way, then just call the initialize in every constructor where it needs to happen
             Id = ++customerNumber;
         }
 
-        public Customer(string Name, string City, string State, bool Active) : this () {
+        //public Customer() {              // "ctor tab tab" for default constructor shortcut
+        //    Id = ++customerNumber;
+        //}
+
+        public Customer() {
+            Initialize();
+        }
+
+        public Customer(string Name, string City, string State) {
             this.Name = Name;
             this.City = City;
             this.State = State;
-            this.Active = Active;
+            Initialize();
         }
     }
 }
