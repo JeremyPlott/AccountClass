@@ -32,37 +32,54 @@ namespace AccountClass {
             cust1.AddSales(200);
             cust1.ChangeName("Coke");
 
-            var cust2 = new Customer("Ikea", "Tampa", "FL");
-            var acct2 = new Account("Money Laundering", cust2);
-            var acct3 = new Account("Swear Jar", cust1);
-            Console.WriteLine($"{cust2.Name}, {cust2.City}, {cust2.State}, ${cust2.Sales}, {cust2.Active}, Id - {cust2.Id}");
-            Console.WriteLine($"{acct1.CustomerInstance.Name}------");
-            Console.WriteLine($"{acct3.CustomerInstance.Name}------");
+            var sav1 = new Savings(0.12m, "My primary savings", cust1);
+            sav1.Deposit(120);
+            sav1.Withdraw(20);
+            Console.WriteLine($"Sav1 balance is {sav1.GetBalance()}");
+            var interest = sav1.CalcInterest(6);
+            Console.WriteLine($"interest is {interest}");
+            sav1.Deposit(interest);
+            Console.WriteLine(sav1.Print());
+            Console.WriteLine(acct1.Print());
+            Console.WriteLine();
 
-            cust2.ChangeLoc("Atlantis", "NM");
-            cust2.ChangeActive(false);
-            cust1.ChangeActive(true);
+            var chk1 = new Checking("First Checking", cust1);
+            chk1.Deposit(200);
+            Console.WriteLine(chk1.Print());
 
-            var cust3 = new Customer();
-            Console.WriteLine($"{cust3.Name}, {cust3.City}, {cust3.State}, ${cust3.Sales}, {cust3.Active}, Id - {cust3.Id}"); //Id and defaults still work
+            //Console.WriteLine();
+
+            //var cust2 = new Customer("Ikea", "Tampa", "FL");
+            //var acct2 = new Account("Money Laundering", cust2);
+            //var acct3 = new Account("Swear Jar", cust1);
+            //Console.WriteLine($"{cust2.Name}, {cust2.City}, {cust2.State}, ${cust2.Sales}, {cust2.Active}, Id - {cust2.Id}");
+            //Console.WriteLine($"{acct1.CustomerInstance.Name}------");
+            //Console.WriteLine($"{acct3.CustomerInstance.Name}------");
+
+            //cust2.ChangeLoc("Atlantis", "NM");
+            //cust2.ChangeActive(false);
+            //cust1.ChangeActive(true);
+
+            //var cust3 = new Customer();
+            //Console.WriteLine($"{cust3.Name}, {cust3.City}, {cust3.State}, ${cust3.Sales}, {cust3.Active}, Id - {cust3.Id}"); //Id and defaults still work
 
 
 
-            cust1.Name = "Playdoh";
+            //cust1.Name = "Playdoh";
 
-            var acct4 = new Account("Primary Savings", cust1);
+            //var acct4 = new Account("Primary Savings", cust1);
 
-            acct1.Deposit(2);
-            acct3.Deposit(1000);
-            acct4.Deposit(50000);
+            //acct1.Deposit(2);
+            //acct3.Deposit(1000);
+            //acct4.Deposit(50000);
 
-            var accounts = new Account[] { acct1, acct3, acct4 };
-            var accountTotal = 0m;
-            foreach(var account in accounts) {
-                accountTotal += account.GetBalance();
-                Console.WriteLine($"{account.Id} {account.Description} {account.CustomerInstance.Name} {account.GetBalance()}");
-            }
-            Console.WriteLine($"Total of all accounts is {accountTotal}.");
+            //var accounts = new Account[] { acct1, acct3, acct4 };
+            //var accountTotal = 0m;
+            //foreach(var account in accounts) {
+            //    accountTotal += account.GetBalance();
+            //    Console.WriteLine($"{account.Id} {account.Description} {account.CustomerInstance.Name} {account.GetBalance()}");
+            //}
+            //Console.WriteLine($"Total of all accounts is {accountTotal}.");
 
 
             /*

@@ -13,6 +13,10 @@ namespace AccountClass {
         public string Description { get; set; }
         public Customer CustomerInstance { get; set; } = null; //property for PK-FK relationship with other class
 
+        public string Print() {
+            return ($"{this.GetType().Name} Nbr: {Id}, Desc: {Description}, Bal: {GetBalance().ToString("C")}");
+        }
+
 
         private Account() { //still doing work in other constructors, but cannot be used to create a new instance when set private
             Id = ++nextAccountNbr;
